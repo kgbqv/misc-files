@@ -1,6 +1,6 @@
 avatar="https://tetr.io/user-content/avatars/6231b64eccd8656984d18b5d.jpg?rv=1672728691652"
 name="khgb"
-tr="21922.91"
+tr="21939.62"
 rank="https://tetr.io/res/league-ranks/u.png"
 qp="2906.7m"
 40l="25.408"
