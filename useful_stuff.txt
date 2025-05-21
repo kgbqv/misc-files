@@ -1,1 +1,36 @@
 https://i.sstatic.net/wlzgf.jpg
+
+snapshot ensemble
+lr scheduler
+lgbm, xgboost
+
+http://scikit.ml/
+
+prompt:
+I want you to act as an experienced data engineer.
+Please implement a full ML pipeline with steps: reducing memory, filling NaN, removing unrelated columns, remove high correlated columns, feature selection using RFECV with a machine learning model such as decision tree, training and tuning model with stratified K-Fold Cross Validation and ensemble (using stacking)
+Also, give me a data overview. EDA, in the code. Give me a way to quantify the data that I give you in order to fine tune the pipeline.
+Split the code into sections, like someone would in an ipynb.
+The data will be provided in test.csv and train.csv in a kaggle dataset "VOAI_TRAINING".
+Provide data in graphs (matplotlib) if possible.
+
+here are the columns [insert columns here]
+
+all of them are numerical features
+
+Give me the code in sections that would correspond to something in a jupyter notebook.
+
+Read the files from [files]
+
+I am concerned about the performance so only take 5k non-null samples for the EDA plots.
+
+Remember to use pipelines and RFECV.
+
+The target is numerical, not categorical.
+Add progress bars wherever you can.
+Use RFECV, K=3, Decision Tree
+Model is Ensemble RF + DT + Linear Regression
+Use K-Fold CV (K=3) + Grid Search
+
+Split the train.csv into 8:2 for train/test, and report MAE for both.
+Remember to save the "engineered" dataset.
