@@ -9,14 +9,12 @@ http://scikit.ml/
 prompt:
 I want you to act as an experienced data engineer.
 Please implement a full ML pipeline with steps: reducing memory, filling NaN, removing unrelated columns, remove high correlated columns, feature selection using RFECV with a machine learning model such as decision tree, training and tuning model with stratified K-Fold Cross Validation and ensemble (using stacking)
-Also, give me a data overview. EDA, in the code. Give me a way to quantify the data that I give you in order to fine tune the pipeline.
+Also, give me a data overview. EDA, in the code. Plot the distributions of numeric columns and categorical. Show how much is missing for each column. Give me a way to quantify the data that I give you in order to fine tune the pipeline.
 Split the code into sections, like someone would in an ipynb.
 The data will be provided in test.csv and train.csv in a kaggle dataset "VOAI_TRAINING".
 Provide data in graphs (matplotlib) if possible.
 
 here are the columns [insert columns here]
-
-all of them are numerical features
 
 Give me the code in sections that would correspond to something in a jupyter notebook.
 
@@ -34,3 +32,66 @@ Use K-Fold CV (K=3) + Grid Search
 
 Split the train.csv into 8:2 for train/test, and report MAE for both.
 Remember to save the "engineered" dataset.
+
+
+
+
+If multiple similar epochs, submit multiple
+
+
+| Model                            | Input Size (H×W×C)                                       |
+| -------------------------------- | -------------------------------------------------------- |
+| **ResNet10–50** (incl. ResNet34) | `224 × 224 × 3`                                          |
+| **EfficientNetB0**               | `224 × 224 × 3`                                          |
+| **EfficientNetB1**               | `240 × 240 × 3`                                          |
+| **EfficientNetB2**               | `260 × 260 × 3`                                          |
+| **EfficientNetB3**               | `300 × 300 × 3`                                          |
+| **Inception v2**                 | `224 × 224 × 3` or `299 × 299 × 3` *(variant dependent)* |
+| **SE-ResNet101**                 | `224 × 224 × 3`                                          |
+
+| Model                 | Max Token Length | Embedding Size | Notes                                                           |
+| --------------------- | ---------------- | -------------- | --------------------------------------------------------------- |
+| **BERT (Base)**       | 512              | 768            | Bidirectional; masked language model                            |
+| **BERT (Large)**      | 512              | 1024           | Bigger, slower, smarter big sister                              |
+| **RoBERTa (Base)**    | 512              | 768            | Robust BERT; trained longer, no NSP                             |
+| **RoBERTa (Large)**   | 512              | 1024           | Stronger than vanilla BERT                                      |
+| **DistilBERT**        | 512              | 768            | Smaller, faster, distilled BERT                                 |
+| **ALBERT (Base)**     | 512              | 768            | Lightweight with parameter sharing                              |
+| **ELECTRA (Base)**    | 512              | 768            | Replaces masked language modeling with replaced token detection |
+| **XLNet**             | 512              | 768–1024       | Permutation-based language modeling                             |
+| **DeBERTa (V3 Base)** | 512              | 768            | Disentangled attention and enhanced embeddings                  |
+
+
+| Model            | Max Token Length | Embedding Size | Notes                                             |
+| ---------------- | ---------------- | -------------- | ------------------------------------------------- |
+| **T5 (Base)**    | 512              | 768            | Text-to-text everything (translation, Q\&A, etc.) |
+| **T5 (Large)**   | 512              | 1024           | Bigger T5 sibling                                 |
+| **BART (Base)**  | 1024             | 768            | Seq2seq with denoising autoencoder                |
+| **BART (Large)** | 1024             | 1024           | Often used in summarization and generation        |
+| **mBART**        | 1024             | 1024           | Multilingual BART                                 |
+| **MarianMT**     | 512              | 512–1024       | Efficient multilingual translation model          |
+
+
+
+SequentialFeatureSelector, SelectKBest, cross_val_score
+
+Use SequentialFeatureSelector to find how many features to take into account
+
+check for multicollinearity with lasso znd alpha or detect with mstrix rank
+
+
+GeM Pooling and Attention works well. also remember to find max seq Length
+
+xgb is usually good, stack with lgbm/rf into log/linreg or lasso if multicollinear
+
+try to find patterns to engineer
+
+for tabular data, plot distributions, check for outliers, and visualize correlations
+then print uniques for cat and plot for numeric
+then print info and describe 
+then plot missing values
+drop unrelated columns, fill NaN, remove high correlated columns, and apply feature selection (unnecessary if underfitting)
+plot feature importance and stuff
+
+
+remmeber to run baseline code
